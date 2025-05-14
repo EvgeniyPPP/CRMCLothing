@@ -2,41 +2,33 @@ package com.crmclothing.service;
 
 import com.crmclothing.model.ClothingItem;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClothingManager {
-    private List<ClothingItem> clothingList;
-
-    public ClothingManager() {
-        this.clothingList = new ArrayList<>();
-    }
+    private Map<Integer, ClothingItem> clothingMap = new HashMap<>();
 
     public void addClothing(ClothingItem item) {
-        clothingList.add(item);
+        clothingMap.put(item.getId(), item);
     }
 
-    public List<ClothingItem> getAllClothing() {
-        return clothingList;
+    public void editClothing(int id, ClothingItem newItem) {
+        clothingMap.put(id, newItem);
     }
 
-    public void editClothing(int index, ClothingItem newItem) {
-        if (index >= 0 && index < clothingList.size()) {
-            clothingList.set(index, newItem);
-        }
+    public void deleteClothing(int id) {
+        clothingMap.remove(id);
     }
 
-    public void deleteClothing(int index) {
-        if (index >= 0 && index < clothingList.size()) {
-            clothingList.remove(index);
-        }
+    public void clearClothing() {
+        clothingMap.clear();
     }
 
-    public void clearClothingList() {
-        clothingList.clear();
+    public Map<Integer, ClothingItem> getAllClothing() {
+        return clothingMap;
     }
 
-    public int getSize() {
-        return clothingList.size();
+    public boolean exists(int id) {
+        return clothingMap.containsKey(id);
     }
 }
