@@ -2,28 +2,20 @@ package com.crmclothing.service;
 
 import com.crmclothing.model.ClothingItem;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClothingSearch {
 
-    public List<ClothingItem> searchBySize(List<ClothingItem> clothingList, String size) {
-        List<ClothingItem> result = new ArrayList<>();
-        for (ClothingItem item : clothingList) {
-            if (item.getSize().equalsIgnoreCase(size)) {
-                result.add(item);
-            }
-        }
-        return result;
+    public List<ClothingItem> searchBySize(List<ClothingItem> items, int size) {
+        return items.stream()
+                .filter(item -> item.getSize() == size)
+                .collect(Collectors.toList());
     }
 
-    public List<ClothingItem> searchByColor(List<ClothingItem> clothingList, String color) {
-        List<ClothingItem> result = new ArrayList<>();
-        for (ClothingItem item : clothingList) {
-            if (item.getColor().equalsIgnoreCase(color)) {
-                result.add(item);
-            }
-        }
-        return result;
+    public List<ClothingItem> searchByColor(List<ClothingItem> items, String color) {
+        return items.stream()
+                .filter(item -> item.getColor().equalsIgnoreCase(color))
+                .collect(Collectors.toList());
     }
 }
