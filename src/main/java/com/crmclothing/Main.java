@@ -1,18 +1,25 @@
 package com.crmclothing;
 
+import com.crmclothing.database.DataBaseHelper;
+import com.crmclothing.database.DataBaseStorage;
 import com.crmclothing.model.ClothingItem;
-import com.crmclothing.service.DatabaseStorage;
 
 import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final DatabaseStorage storage = new DatabaseStorage();
+    private static final DataBaseStorage storage = new DataBaseStorage();
     private static Map<Integer, ClothingItem> clothingMap = new HashMap<>(storage.load());
 
+
     public static void main(String[] args) {
+        DataBaseHelper.initDatabase();
+
         while (true) {
             System.out.println("\n1. Додати одяг");
             System.out.println("2. Редагувати одяг");
@@ -96,17 +103,10 @@ public class Main {
         System.out.print("Тип: ");
         String type = scanner.nextLine();
 
-        int size = 0;
-        while (true) {
-            try {
-                System.out.print("Розмір (число): ");
-                size = Integer.parseInt(scanner.nextLine());
-                if (size > 0 && size < 100) break;
-                else System.out.println("Розмір повинен бути від 1 до 99.");
-            } catch (NumberFormatException e) {
-                System.out.println("Розмір має бути числом.");
-            }
-        }
+
+        System.out.print("Розмір: ");
+        String size = scanner.nextLine();
+
 
         System.out.print("Колір: ");
         String color = scanner.nextLine();
@@ -114,8 +114,8 @@ public class Main {
         System.out.print("Принт: ");
         String print = scanner.nextLine();
 
-        System.out.print("Дата додавання (YYYY-MM-DD): ");
-        String dateAdded = scanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dateAdded = LocalDateTime.now().format(formatter); // Наприклад: 2025-05-17 14:26:45
 
         return new ClothingItem(name, type, size, color, print, dateAdded);
     }
