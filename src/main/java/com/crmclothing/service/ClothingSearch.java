@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 
 public class ClothingSearch {
 
-    public List<ClothingItem> searchBySize(List<ClothingItem> items, int size) {
+    public List<ClothingItem> searchBySize(List<ClothingItem> items, String size) {
         return items.stream()
-                .filter(item -> item.getSize() == size)
+                .filter(item -> item.getSize().equalsIgnoreCase(size))
                 .collect(Collectors.toList());
     }
 

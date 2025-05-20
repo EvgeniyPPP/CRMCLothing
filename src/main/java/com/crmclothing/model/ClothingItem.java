@@ -4,13 +4,12 @@ public class ClothingItem {
     private int id;
     private String name;
     private String type;
-    private int size;
+    private String size;
     private String color;
     private String print;
     private String dateAdded;
 
-    // Конструктор з ID (для бази даних)
-    public ClothingItem(int id, String name, String type, int size, String color, String print, String dateAdded) {
+    public ClothingItem(int id, String name, String type, String size, String color, String print, String dateAdded) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -20,12 +19,11 @@ public class ClothingItem {
         this.dateAdded = dateAdded;
     }
 
-    // Конструктор без ID (для створення вручну)
-    public ClothingItem(String name, String type, int size, String color, String print, String dateAdded) {
+    public ClothingItem(String name, String type, String size, String color, String print, String dateAdded) {
         this(0, name, type, size, color, print, dateAdded);
     }
 
-    // Геттери та сеттери
+
     public int getId() {
         return id;
     }
@@ -42,7 +40,7 @@ public class ClothingItem {
         return type;
     }
 
-    public int getSize() {
+    public String getSize() {
         return size;
     }
 
@@ -70,7 +68,7 @@ public class ClothingItem {
             int id = Integer.parseInt(parts[0]);
             String name = parts[1];
             String type = parts[2];
-            int size = Integer.parseInt(parts[3]);
+            String size = parts[3];
             String color = parts[4];
             String print = parts[5];
             String dateAdded = parts[6];

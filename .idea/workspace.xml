@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="43643cbd-0552-4e65-a4f8-ecdee4e84760" name="Changes" comment="v 0.1">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/crmclothing/database/DatabaseHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/crmclothing/database/DatabaseStorage.java" afterDir="false" />
+    <list default="true" id="43643cbd-0552-4e65-a4f8-ecdee4e84760" name="Changes" comment="v 0.2">
+      <change afterPath="$PROJECT_DIR$/CRM-Clothing.eml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CRM-Clothing.userlibraries" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/crmclothing/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crmclothing/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/crmclothing/model/ClothingItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crmclothing/model/ClothingItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/crmclothing/service/ClothingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crmclothing/service/ClothingManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/crmclothing/database/DataBaseHelper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/crmclothing/service/ClothingSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crmclothing/service/ClothingSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/crmclothing/service/FileStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/crmclothing/service/FileStorage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +46,10 @@
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;devp&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -73,11 +74,28 @@
       <option name="project" value="LOCAL" />
       <updated>1747167043325</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="v 0.1">
+      <option name="closed" value="true" />
+      <created>1747181917783</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747181917783</updated>
+    </task>
+    <task id="LOCAL-00003" summary="v 0.2">
+      <option name="closed" value="true" />
+      <created>1747487042934</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747487042934</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v 0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v 0.1" />
+    <MESSAGE value="v 0.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="v 0.2" />
   </component>
 </project>

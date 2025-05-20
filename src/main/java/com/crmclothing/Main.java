@@ -1,16 +1,21 @@
 package com.crmclothing;
 
+import com.crmclothing.database.DataBaseStorage;
 import com.crmclothing.model.ClothingItem;
-import com.crmclothing.service.DatabaseStorage;
+import com.crmclothing.service.ClothingSearch;
 
 import java.util.Map;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
-    private static final DatabaseStorage storage = new DatabaseStorage();
+    private static final DataBaseStorage storage = new DataBaseStorage();
     private static Map<Integer, ClothingItem> clothingMap = new HashMap<>(storage.load());
+    private static final ClothingSearch searchService = new ClothingSearch(); // 🔹 Об'єкт для пошуку
 
     public static void main(String[] args) {
         while (true) {
@@ -18,8 +23,9 @@ public class Main {
             System.out.println("2. Редагувати одяг");
             System.out.println("3. Видалити одяг");
             System.out.println("4. Показати всі записи");
-            System.out.println("5. Зберегти у базу даних");
-            System.out.println("6. Вийти");
+            System.out.println("5. Пошук");
+            System.out.println("6. Зберегти у базу даних");
+            System.out.println("7. Вийти");
             System.out.print("Ваш вибір: ");
             String choice = scanner.nextLine();
 
@@ -28,8 +34,9 @@ public class Main {
                 case "2" -> editItem();
                 case "3" -> deleteItem();
                 case "4" -> listItems();
-                case "5" -> storage.save(clothingMap);
-                case "6" -> {
+                case "5" -> searchItems();
+                case "6" -> storage.save(clothingMap);
+                case "7" -> {
                     storage.save(clothingMap);
                     System.out.println("Збережено. До побачення!");
                     return;
@@ -89,6 +96,41 @@ public class Main {
         });
     }
 
+    private static void searchItems() {
+        System.out.println("Пошук за:");
+        System.out.println("1. Розміром");
+        System.out.println("2. Кольором");
+        System.out.print("Ваш вибір: ");
+        String choice = scanner.nextLine();
+
+        switch (choice) {
+            case "1" -> {
+                System.out.print("Введіть розмір для пошуку: ");
+                String size = scanner.nextLine();
+                List<ClothingItem> results = searchService.searchBySize(clothingMap.values().stream().toList(), size);
+                printSearchResults(results);
+            }
+            case "2" -> {
+                System.out.print("Введіть колір для пошуку: ");
+                String color = scanner.nextLine();
+                List<ClothingItem> results = searchService.searchByColor(clothingMap.values().stream().toList(), color);
+                printSearchResults(results);
+            }
+            default -> System.out.println("Невірний вибір.");
+        }
+    }
+
+    private static void printSearchResults(List<ClothingItem> results) {
+        if (results.isEmpty()) {
+            System.out.println("Нічого не знайдено.");
+        } else {
+            results.forEach(item -> {
+                System.out.println(item);
+                System.out.println("-----------");
+            });
+        }
+    }
+
     private static ClothingItem createClothingItem() {
         System.out.print("Назва: ");
         String name = scanner.nextLine();
@@ -96,17 +138,8 @@ public class Main {
         System.out.print("Тип: ");
         String type = scanner.nextLine();
 
-        int size = 0;
-        while (true) {
-            try {
-                System.out.print("Розмір (число): ");
-                size = Integer.parseInt(scanner.nextLine());
-                if (size > 0 && size < 100) break;
-                else System.out.println("Розмір повинен бути від 1 до 99.");
-            } catch (NumberFormatException e) {
-                System.out.println("Розмір має бути числом.");
-            }
-        }
+        System.out.print("Розмір: ");
+        String size = scanner.nextLine();
 
         System.out.print("Колір: ");
         String color = scanner.nextLine();
@@ -114,8 +147,8 @@ public class Main {
         System.out.print("Принт: ");
         String print = scanner.nextLine();
 
-        System.out.print("Дата додавання (YYYY-MM-DD): ");
-        String dateAdded = scanner.nextLine();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String dateAdded = LocalDateTime.now().format(formatter);
 
         return new ClothingItem(name, type, size, color, print, dateAdded);
     }
